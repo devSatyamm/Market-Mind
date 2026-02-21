@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketMind | Mobile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Nav styles delegated to style.css */
+
+        .hero {
+            padding-top: 40px;
+            padding-bottom: 140px;
+            height: auto;
+            min-height: 100vh;
+        }
+
+
+        .ticker-wrap {
+            bottom: 90px;
+        }
+
+        .watchlist-widget,
+        .sidebar-trigger {
+            display: none !important;
+        }
+
+        .logo.mobile-header {
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo.mobile-header span {
+            color: var(--neon-blue);
+            text-shadow: var(--glow-blue);
+        }
+    </style>
+    <script>
+        // Redirect to Desktop if screen is large
+        if (window.innerWidth > 768) {
+            window.location.href = "index.html";
+        }
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) window.location.href = "index.html";
+        });
+    </script>
+</head>
+
+<body>
+
+    <!-- Background Grid -->
+    <div class="grid-bg"></div>
+
+
+    <!-- Mobile Navigation (Bottom) -->
+    <nav class="glass-panel">
+        <div class="nav-links">
+            <a href="dashboard_mobile.html" class="active">Home</a>
+            <a href="pages/news_reels_mobile.html">Reels</a>
+            <a href="pages/vc_forge_mobile.html">Forge</a>
+            <a href="pages/scheme_oracle_mobile.html">Oracle</a>
+            <a href="pages/profile_mobile.html">Profile</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="logo mobile-header">MARKET<span style="color: white;">MIND</span></div>
+
+        <h1 class="glow-text-blue floating">THE AGENTIC<br><span style="color: white;">HORIZON</span></h1>
+
+        <p style="font-size: 1.2rem; color: var(--text-muted); margin: 20px 0;">
+            Move beyond static headlines. <strong style="color: var(--neon-purple);">Visualize ripple effects</strong>
+            instantly.
+        </p>
+
+        <div class="hero-stats" style="flex-wrap: wrap; justify-content: center; gap: 15px;">
+            <div class="stat-item" style="min-width: 40%;">
+                <h4>14ms</h4>
+                <p>Latency</p>
+            </div>
+            <div class="stat-item" style="min-width: 40%;">
+                <h4>10k+</h4>
+                <p>Scenarios</p>
+            </div>
+        </div>
+
+        <br><br>
+        <div style="display: flex; flex-direction: column; gap: 15px; width: 100%;">
+            <a href="pages/news_reels.html" class="cta-button"
+                style="background: var(--neon-blue); color: black; font-weight: bold;">Launch Simulation</a>
+
+        </div>
+    </section>
+
+    <!-- Core Modules Grid -->
+    <section class="grid-container" style="padding-bottom: 120px;">
+        <div class="glass-panel feature-card" onclick="location.href='pages/news_reels_mobile.html'">
+            <div class="card-icon">📱</div>
+            <h3>NEURAL REELS</h3>
+            <p>Vertical AI feeds that map "Causal Chains".</p>
+        </div>
+        <div class="glass-panel feature-card" onclick="location.href='pages/vc_forge_mobile.html'">
+            <div class="card-icon">🛡️</div>
+            <h3>VC FORGE</h3>
+            <p>Stress-test your runway against Black Swan events.</p>
+        </div>
+        <div class="glass-panel feature-card" onclick="location.href='pages/scheme_oracle_mobile.html'">
+            <div class="card-icon">🏛️</div>
+            <h3>SCHEME ORACLE</h3>
+            <p>Match with $500M+ in Govt & Private capital.</p>
+        </div>
+        <div class="glass-panel feature-card" onclick="location.href='pages/profile_mobile.html'">
+            <div class="card-icon">👤</div>
+            <h3>PROFILE</h3>
+            <p>Manage your identity.</p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

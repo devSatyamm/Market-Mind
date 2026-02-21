@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        if (window.innerWidth <= 768) window.location.href = "dashboard_mobile.html";
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 768) window.location.href = "dashboard_mobile.html";
+        });
+    </script>
+    <title>MarketMind | Dashboard</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <a href="index.html" class="logo">
+            <span class="logo-icon-sm"><i class="fa-solid fa-cube"></i></span>
+            MARKET<span class="logo-sub">MIND</span>
+        </a>
+
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search insights, markets, or trends…">
+        </div>
+
+        <nav class="nav-menu">
+            <a href="dashboard.html" class="nav-item active">Dashboard</a>
+            <a href="pages/strategy.html" class="nav-item">Simulations</a>
+            <a href="pages/scheme_oracle.html" class="nav-item">Funding</a>
+            <a href="pages/vc_forge.html" class="nav-item">VC Forge</a>
+            <a href="pages/global_policies.html" class="nav-item">Policies</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+            <button class="btn btn-icon btn-ghost relative">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notif-dot"></span>
+            </button>
+            <button class="btn btn-icon btn-ghost"><i class="fa-solid fa-gear"></i></button>
+            <a href="pages/profile.html" class="profile-avatar-sm">
+                <img src="https://ui-avatars.com/api/?name=Alex+M&background=6366f1&color=fff&size=128" alt="Profile">
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h1>Market Overview</h1>
+                <p><i class="fa-solid fa-circle-dot text-cyan"
+                        style="font-size:0.6rem; margin-right:0.3rem;"></i>Real-time economic intelligence &amp;
+                    AI-driven foresight</p>
+            </div>
+            <div class="flex gap-3">
+                <button class="btn btn-outline"><i class="fa-solid fa-filter"></i> Filter</button>
+                <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Customize Feed</button>
+            </div>
+        </div>
+
+        <!-- Tab Bar -->
+        <div class="tab-group text-sm">
+            <div class="tab-btn active">All Insights</div>
+            <div class="tab-btn">Macroeconomics</div>
+            <div class="tab-btn">Venture Capital</div>
+            <div class="tab-btn">Policy &amp; Regs</div>
+            <div class="tab-btn">Enterprise AI</div>
+        </div>
+
+        <div class="dashboard-layout">
+
+            <!-- Main Feed -->
+            <div>
+
+                <!-- Insight 1 -->
+                <article class="insight-card">
+                    <div class="insight-thumb">
+                        <i class="fa-solid fa-chart-line thumb-icon"></i>
+                    </div>
+                    <div class="flex flex-col justify-between w-full">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="badge badge-blue">Finance</span>
+                                <span class="text-xs text-muted flex items-center gap-2"><i
+                                        class="fa-regular fa-clock"></i> 2h ago</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2" style="cursor:pointer; transition: color 0.2s;"
+                                onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color=''">
+                                Global Liquidity Shift: Central Banks Pivot
+                            </h3>
+                            <p class="text-sm text-muted leading-relaxed">New policy signals from the Fed and ECB
+                                suggest a coordinated easing cycle beginning Q3. AI models predict a 15% upside for
+                                emerging market equities.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t">
+                            <span class="text-xs font-bold text-green flex items-center gap-2"><i
+                                    class="fa-solid fa-arrow-trend-up"></i> High Impact</span>
+                            <div class="flex gap-2">
+                                <button class="btn btn-icon btn-ghost"><i class="fa-regular fa-bookmark"></i></button>
+                                <button class="btn btn-icon btn-ghost"><i class="fa-solid fa-share-nodes"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Insight 2 -->
+                <article class="insight-card">
+                    <div class="insight-thumb">
+                        <i class="fa-solid fa-microchip thumb-icon"></i>
+                    </div>
+                    <div class="flex flex-col justify-between w-full">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="badge badge-yellow">Technology</span>
+                                <span class="text-xs text-muted flex items-center gap-2"><i
+                                        class="fa-regular fa-clock"></i> 5h ago</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2" style="cursor:pointer;"
+                                onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color=''">
+                                Generative AI Regulations: EU Act Finalized
+                            </h3>
+                            <p class="text-sm text-muted leading-relaxed">The EU AI Act has entered its final trilogue
+                                phase. Compliance costs for Foundation Model providers are expected to rise by 25%
+                                annually.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t">
+                            <span class="text-xs font-bold text-yellow flex items-center gap-2"><i
+                                    class="fa-solid fa-triangle-exclamation"></i> Regulatory Risk</span>
+                            <div class="flex gap-2">
+                                <button class="btn btn-icon btn-ghost"><i class="fa-regular fa-bookmark"></i></button>
+                                <button class="btn btn-icon btn-ghost"><i class="fa-solid fa-share-nodes"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Insight 3 -->
+                <article class="insight-card">
+                    <div class="insight-thumb">
+                        <i class="fa-solid fa-leaf thumb-icon"></i>
+                    </div>
+                    <div class="flex flex-col justify-between w-full">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="badge badge-green">Energy</span>
+                                <span class="text-xs text-muted flex items-center gap-2"><i
+                                        class="fa-regular fa-clock"></i> 8h ago</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2" style="cursor:pointer;"
+                                onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color=''">
+                                Hydrogen Subsidy Wars: US vs EU
+                            </h3>
+                            <p class="text-sm text-muted leading-relaxed">Competitive subsidy frameworks are
+                                accelerating green hydrogen adoption. Analysis suggests a 40% cost reduction by 2027.
+                            </p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t">
+                            <span class="text-xs font-bold text-green flex items-center gap-2"><i
+                                    class="fa-solid fa-arrow-trend-up"></i> Investment Opp</span>
+                            <div class="flex gap-2">
+                                <button class="btn btn-icon btn-ghost"><i class="fa-regular fa-bookmark"></i></button>
+                                <button class="btn btn-icon btn-ghost"><i class="fa-solid fa-share-nodes"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Insight 4 -->
+                <article class="insight-card">
+                    <div class="insight-thumb">
+                        <i class="fa-solid fa-building-columns thumb-icon"></i>
+                    </div>
+                    <div class="flex flex-col justify-between w-full">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="badge badge-red">Policy</span>
+                                <span class="text-xs text-muted flex items-center gap-2"><i
+                                        class="fa-regular fa-clock"></i> 12h ago</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2" style="cursor:pointer;"
+                                onmouseover="this.style.color='#60a5fa'" onmouseout="this.style.color=''">
+                                Fed Rate Decision: Holding at 5.25%
+                            </h3>
+                            <p class="text-sm text-muted leading-relaxed">The Federal Reserve maintained its target
+                                rate. Markets rallied briefly; long-term bond yields dip as investors price in two cuts
+                                before year-end.</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-4 pt-4 border-t">
+                            <span class="text-xs font-bold text-yellow flex items-center gap-2"><i
+                                    class="fa-solid fa-circle-info"></i> Watch Closely</span>
+                            <div class="flex gap-2">
+                                <button class="btn btn-icon btn-ghost"><i class="fa-regular fa-bookmark"></i></button>
+                                <button class="btn btn-icon btn-ghost"><i class="fa-solid fa-share-nodes"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="flex flex-col gap-4" style="position:sticky; top:80px;">
+
+                <!-- Watchlist -->
+                <div class="widget">
+                    <h3><i class="fa-solid fa-star"></i> Watchlist <button class="btn btn-sm btn-ghost ml-auto"
+                            style="font-size:0.72rem; padding:0.2rem 0.6rem;">Edit</button></h3>
+                    <div>
+                        <div class="ticker-item">
+                            <div>
+                                <div class="ticker-name">NASDAQ</div>
+                                <div class="ticker-sub">Tech Index</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="ticker-change text-green">+1.24%</div>
+                                <div class="ticker-price">14,250.50</div>
+                            </div>
+                        </div>
+                        <div class="ticker-item">
+                            <div>
+                                <div class="ticker-name">XAU/USD</div>
+                                <div class="ticker-sub">Gold Spot</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="ticker-change text-red">-0.45%</div>
+                                <div class="ticker-price">1,985.20</div>
+                            </div>
+                        </div>
+                        <div class="ticker-item">
+                            <div>
+                                <div class="ticker-name">BTC/USD</div>
+                                <div class="ticker-sub">Bitcoin</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="ticker-change text-green">+3.80%</div>
+                                <div class="ticker-price">42,100.00</div>
+                            </div>
+                        </div>
+                        <div class="ticker-item">
+                            <div>
+                                <div class="ticker-name">S&amp;P 500</div>
+                                <div class="ticker-sub">US Equities</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="ticker-change text-green">+0.67%</div>
+                                <div class="ticker-price">5,024.80</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending Topics -->
+                <div class="widget">
+                    <h3><i class="fa-solid fa-fire"></i> Trending Topics</h3>
+                    <div class="flex flex-col gap-1">
+                        <div class="topic-row">
+                            <span class="topic-name">#SovereignAI</span>
+                            <span class="topic-count">12k</span>
+                        </div>
+                        <div class="topic-row">
+                            <span class="topic-name">#RateCuts</span>
+                            <span class="topic-count">8.5k</span>
+                        </div>
+                        <div class="topic-row">
+                            <span class="topic-name">#Semiconductors</span>
+                            <span class="topic-count">5k</span>
+                        </div>
+                        <div class="topic-row">
+                            <span class="topic-name">#CleanTech</span>
+                            <span class="topic-count">3.2k</span>
+                        </div>
+                        <div class="topic-row">
+                            <span class="topic-name">#OpenAI</span>
+                            <span class="topic-count">2.8k</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline w-full mt-4" style="font-size:0.8rem;">View All Analytics</button>
+                </div>
+
+                <!-- AI Confidence -->
+                <div class="widget">
+                    <h3><i class="fa-solid fa-brain"></i> AI Confidence</h3>
+                    <div class="flex flex-col gap-3">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-muted">Macro Accuracy</span>
+                                <span class="font-bold text-green">94%</span>
+                            </div>
+                            <div style="height:4px; background:var(--border); border-radius:2px; overflow:hidden;">
+                                <div
+                                    style="width:94%; height:100%; background:linear-gradient(90deg, #10b981, #22d3ee); border-radius:2px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-muted">Policy Impact</span>
+                                <span class="font-bold" style="color:#60a5fa;">87%</span>
+                            </div>
+                            <div style="height:4px; background:var(--border); border-radius:2px; overflow:hidden;">
+                                <div
+                                    style="width:87%; height:100%; background:linear-gradient(90deg, #3b82f6, #8b5cf6); border-radius:2px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-muted">Sentiment Model</span>
+                                <span class="font-bold text-yellow">78%</span>
+                            </div>
+                            <div style="height:4px; background:var(--border); border-radius:2px; overflow:hidden;">
+                                <div
+                                    style="width:78%; height:100%; background:linear-gradient(90deg, #f59e0b, #f97316); border-radius:2px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
