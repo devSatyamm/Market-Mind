@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketMind | Simulations</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Range slider label */
+        .range-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .range-value {
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .roadmap-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.25rem;
+        }
+
+        .roadmap-title-row h3 {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <a href="../index.html" class="logo">
+            <span class="logo-icon-sm"><i class="fa-solid fa-cube"></i></span>
+            MARKET<span class="logo-sub">MIND</span>
+        </a>
+
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search strategies, scenarios…">
+        </div>
+
+        <nav class="nav-menu">
+            <a href="../dashboard.html" class="nav-item">Dashboard</a>
+            <a href="strategy.html" class="nav-item active">Simulations</a>
+            <a href="scheme_oracle.html" class="nav-item">Funding</a>
+            <a href="vc_forge.html" class="nav-item">VC Forge</a>
+            <a href="global_policies.html" class="nav-item">Policies</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+            <button class="btn btn-icon btn-ghost relative">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notif-dot"></span>
+            </button>
+            <button class="btn btn-icon btn-ghost"><i class="fa-solid fa-gear"></i></button>
+            <a href="profile.html" class="profile-avatar-sm">
+                <img src="https://ui-avatars.com/api/?name=Alex+M&background=6366f1&color=fff&size=128" alt="Profile">
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <div>
+                <h1>Simulations &amp; Strategy</h1>
+                <p><i class="fa-solid fa-wand-magic-sparkles"
+                        style="color:var(--accent-indigo);margin-right:0.3rem;"></i>AI analysis based on 1,402 recent
+                    news sources and market reports.</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="card"
+                    style="padding:0.45rem 1rem; display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; color:var(--text-muted);">
+                    <i class="fa-regular fa-calendar"></i> Oct 12, 2026
+                </div>
+                <button class="btn btn-primary"><i class="fa-solid fa-rotate"></i> Refresh Data</button>
+            </div>
+        </div>
+
+        <div class="strategy-grid">
+
+            <!-- Left: Roadmap -->
+            <div>
+                <div class="roadmap-title-row">
+                    <h3><i class="fa-solid fa-map" style="color:var(--accent-blue); margin-right:0.4rem;"></i>Strategic
+                        Roadmap</h3>
+                    <a href="#" class="text-xs text-accent" style="font-weight:500;">View All</a>
+                </div>
+
+                <div class="roadmap-list">
+
+                    <!-- Urgent -->
+                    <div class="roadmap-card urgent">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold" style="font-size:0.95rem;">Renegotiate Supplier Contracts</h4>
+                            <span class="badge badge-red">Urgent</span>
+                        </div>
+                        <p class="text-sm text-muted mb-3" style="line-height:1.6;">Trigger: New Tariff Policy announced
+                            yesterday affects imported steel by up to 18%.</p>
+                        <div class="flex items-center gap-5 text-xs text-muted">
+                            <span class="flex items-center gap-1"><i class="fa-regular fa-clock"></i> Due Oct 15</span>
+                            <span class="flex items-center gap-1"><i class="fa-regular fa-newspaper"></i> Global Trade
+                                Daily</span>
+                        </div>
+                    </div>
+
+                    <!-- Warning -->
+                    <div class="roadmap-card warning">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold" style="font-size:0.95rem;">Hedge Currency Risk</h4>
+                            <span class="badge badge-yellow">Warning</span>
+                        </div>
+                        <p class="text-sm text-muted mb-3" style="line-height:1.6;">Trigger: FX Volatility report
+                            predicts 15% fluctuation in Euro vs USD over next 60 days.</p>
+                        <div class="flex items-center gap-5 text-xs text-muted">
+                            <span class="flex items-center gap-1"><i class="fa-regular fa-clock"></i> Due Nov 01</span>
+                            <span class="flex items-center gap-1"><i class="fa-regular fa-newspaper"></i> FinTech
+                                Weekly</span>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming -->
+                    <div class="roadmap-card upcoming">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold" style="font-size:0.95rem;">Q4 Board Meeting Prep</h4>
+                            <span class="badge badge-blue">Upcoming</span>
+                        </div>
+                        <p class="text-sm text-muted mb-3" style="line-height:1.6;">Standard quarterly cycle. Review Q3
+                            performance vs projections and update forecast models.</p>
+                        <div class="flex items-center gap-5 text-xs text-muted">
+                            <span class="flex items-center gap-1"><i class="fa-regular fa-clock"></i> Due Dec 10</span>
+                        </div>
+                    </div>
+
+                    <!-- Optional -->
+                    <div class="roadmap-card">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold" style="font-size:0.95rem;">Evaluate R&amp;D Expansion</h4>
+                            <span class="badge badge-muted">Optional</span>
+                        </div>
+                        <p class="text-sm text-muted mb-3" style="line-height:1.6;">Dependent on Q4 revenue surplus.
+                            Explore new product verticals in enterprise AI tooling.</p>
+                        <div class="flex items-center gap-5 text-xs text-muted">
+                            <span class="flex items-center gap-1"><i class="fa-regular fa-clock"></i> Jan 2027</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Right: Simulation Panel -->
+            <div>
+                <div class="flex items-center justify-between mb-5">
+                    <h3 style="font-weight:700; font-size:1rem; display:flex; align-items:center; gap:0.5rem;">
+                        <i class="fa-solid fa-sliders" style="color:var(--accent-blue);"></i> Scenario Simulation
+                    </h3>
+                    <button class="btn btn-primary"><i class="fa-solid fa-play"></i> Run Simulation</button>
+                </div>
+
+                <div class="simulation-panel">
+                    <p class="text-sm text-muted mb-5">Projected Runway vs. Market Trends — adjust parameters and run to
+                        recalculate.</p>
+
+                    <!-- Controls -->
+                    <div class="grid grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <div class="range-header">
+                                <span>Inflation Rate</span>
+                                <span class="range-value" id="inflation-val">4.2%</span>
+                            </div>
+                            <input type="range" min="0" max="10" step="0.1" value="4.2"
+                                oninput="document.getElementById('inflation-val').textContent=parseFloat(this.value).toFixed(1)+'%'">
+                            <div class="flex justify-between text-xs text-muted mt-1"><span>0%</span><span>10%</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="range-header">
+                                <span>Supply Chain Delay</span>
+                                <span class="range-value" id="supply-val">2 Wks</span>
+                            </div>
+                            <input type="range" min="0" max="12" value="2"
+                                oninput="document.getElementById('supply-val').textContent=this.value+' Wks'">
+                            <div class="flex justify-between text-xs text-muted mt-1"><span>0 wks</span><span>12
+                                    wks</span></div>
+                        </div>
+
+                        <div>
+                            <div class="range-header" style="margin-bottom:0.75rem;">
+                                <span>Competitor Funding</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <p class="text-xs text-muted">Assume major rival closes Series B round</p>
+                        </div>
+
+                        <div>
+                            <div class="range-header" style="margin-bottom:0.6rem;"><span>Market Sentiment</span></div>
+                            <select>
+                                <option>Bullish</option>
+                                <option selected>Neutral (Baseline)</option>
+                                <option>Bearish</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Metric Boxes -->
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <div class="metric-box">
+                            <div class="text-xs text-muted mb-1">Proj. Cash Flow</div>
+                            <div class="text-xl font-bold">$1.2M</div>
+                            <div class="text-xs text-green mt-1">+5.2%</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="text-xs text-muted mb-1">Runway</div>
+                            <div class="text-xl font-bold">14 Mo</div>
+                            <div class="text-xs text-red mt-1">-1 Mo</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="text-xs text-muted mb-1">CAC Impact</div>
+                            <div class="text-xl font-bold">$450</div>
+                            <div class="text-xs text-muted mt-1">Stable</div>
+                        </div>
+                    </div>
+
+                    <!-- Chart -->
+                    <div style="height:260px; width:100%; position:relative;">
+                        <canvas id="simulationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // Simulation chart
+        const ctx = document.getElementById('simulationChart').getContext('2d');
+        const labels = ['Q1', 'Q2', 'Q3', 'Q4', 'Q1\'27', 'Q2\'27'];
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [
+                    {
+                        label: 'Optimistic',
+                        data: [1.0, 1.2, 1.5, 1.9, 2.4, 3.1],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16,185,129,0.06)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#10b981',
+                        pointRadius: 4,
+                    },
+                    {
+                        label: 'Baseline',
+                        data: [1.0, 1.1, 1.2, 1.35, 1.5, 1.7],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59,130,246,0.06)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#3b82f6',
+                        pointRadius: 4,
+                    },
+                    {
+                        label: 'Bear Case',
+                        data: [1.0, 0.95, 0.85, 0.72, 0.6, 0.45],
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239,68,68,0.04)',
+                        borderWidth: 2,
+                        borderDash: [5, 4],
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#ef4444',
+                        pointRadius: 4,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: '#94a3b8', font: { family: 'Inter', size: 12 }, boxWidth: 12, padding: 20 }
+                    },
+                    tooltip: {
+                        backgroundColor: '#0e1628',
+                        borderColor: 'rgba(99,102,241,0.3)',
+                        borderWidth: 1,
+                        titleColor: '#f1f5f9',
+                        bodyColor: '#94a3b8',
+                        padding: 12,
+                    }
+                },
+                scales: {
+                    x: { ticks: { color: '#64748b', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                    y: {
+                        ticks: { color: '#64748b', font: { size: 11 }, callback: v => '$' + v + 'M' },
+                        grid: { color: 'rgba(255,255,255,0.04)' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

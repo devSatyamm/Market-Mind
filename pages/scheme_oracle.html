@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketMind | Funding Database</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        /* Funding Page Specifics */
+        .page-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            min-height: calc(100vh - 80px);
+        }
+
+        .filter-section {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-section:last-child {
+            border-bottom: none;
+        }
+
+        .filter-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .custom-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .custom-checkbox input {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            background: transparent;
+            position: relative;
+        }
+
+        .custom-checkbox input:checked {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .custom-checkbox input:checked::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+            position: absolute;
+            font-size: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .custom-checkbox:hover {
+            color: var(--text-primary);
+        }
+
+        .funding-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 cards per row */
+            gap: 1.5rem;
+        }
+
+        .funding-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+
+        .funding-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .scheme-icon {
+            width: 48px;
+            height: 48px;
+            background: #334155;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .scheme-icon img {
+            max-width: 60%;
+            border-radius: 4px;
+        }
+
+        .tag-row {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tag-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .action-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 1200px) {
+            .funding-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar-filters {
+                display: none;
+            }
+
+            /* Or move to modal */
+            .funding-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <a href="../index.html" class="logo">
+            <span class="logo-icon-sm"><i class="fa-solid fa-cube"></i></span>
+            MARKET<span class="logo-sub">MIND</span>
+        </a>
+
+        <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="search" placeholder="Search grants, schemes, keywords…">
+        </div>
+
+        <nav class="nav-menu">
+            <a href="../dashboard.html" class="nav-item">Dashboard</a>
+            <a href="strategy.html" class="nav-item">Simulations</a>
+            <a href="scheme_oracle.html" class="nav-item active">Funding</a>
+            <a href="vc_forge.html" class="nav-item">VC Forge</a>
+            <a href="global_policies.html" class="nav-item">Policies</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+            <button class="btn btn-icon btn-ghost relative">
+                <i class="fa-regular fa-bell"></i>
+                <span class="notif-dot"></span>
+            </button>
+            <button class="btn btn-icon btn-ghost"><i class="fa-solid fa-gear"></i></button>
+            <a href="profile.html" class="profile-avatar-sm">
+                <img src="https://ui-avatars.com/api/?name=Alex+M&background=6366f1&color=fff&size=128" alt="Profile">
+            </a>
+        </div>
+    </header>
+
+    <div class="container page-grid">
+
+        <!-- Left Sidebar: Filters -->
+        <aside class="sidebar-filters">
+            <div class="mb-6 mt-6">
+                <h2 class="text-xl font-bold mb-1">Filters</h2>
+                <p class="text-xs text-muted">Refine your search parameters</p>
+            </div>
+
+            <!-- Business Stage -->
+            <div class="filter-section">
+                <div class="filter-title"><i class="fa-solid fa-chart-simple mr-2 text-accent"></i> Business Stage</div>
+                <div class="checkbox-group">
+                    <label class="custom-checkbox">
+                        <input type="checkbox"> Idea / Pre-seed
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" checked> Early Stage / Seed
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox"> Growth / Series A
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox"> Established
+                    </label>
+                </div>
+            </div>
+
+            <!-- Industry -->
+            <div class="filter-section">
+                <div class="filter-title"><i class="fa-solid fa-building mr-2 text-accent"></i> Industry</div>
+                <div class="checkbox-group">
+                    <label class="custom-checkbox">
+                        <input type="checkbox"> All Industries
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" checked> Technology & SaaS
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox"> Green Energy
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox"> Healthcare
+                    </label>
+                    <label class="custom-checkbox">
+                        <input type="checkbox"> Manufacturing
+                    </label>
+                </div>
+            </div>
+
+            <!-- Grant Amount -->
+            <div class="filter-section">
+                <div class="filter-title"><i class="fa-solid fa-money-bill mr-2 text-accent"></i> Grant Amount</div>
+                <div class="flex justify-between text-xs text-muted mb-2">
+                    <span>$10k</span>
+                    <span>$5M+</span>
+                </div>
+                <!-- Simple range slider -->
+                <input type="range" min="10000" max="5000000" step="10000" value="250000" data-display="amount-display">
+                <div class="mt-2 text-center font-bold" id="amount-display">Up to $250,000</div>
+            </div>
+
+            <!-- Company Age -->
+            <div class="filter-section">
+                <div class="filter-title"><i class="fa-solid fa-clock mr-2 text-accent"></i> Company Age</div>
+                <div class="flex flex-wrap gap-2">
+                    <button class="btn btn-sm btn-outline text-xs">
+                        < 1 Year</button>
+                            <button class="btn btn-sm btn-primary text-xs"> 1-3 Years</button>
+                            <button class="btn btn-sm btn-outline text-xs"> 3-5 Years</button>
+                            <button class="btn btn-sm btn-outline text-xs"> 5+ Years</button>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content-area" style="padding: 2rem 0;">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-3xl font-bold">Funding Database</h1>
+                    <p class="text-muted">1,240 active schemes matched your profile</p>
+                </div>
+                <div class="flex gap-3">
+                    <button class="btn btn-outline"><i class="fa-solid fa-sliders mr-2"></i> Advanced</button>
+                    <button class="btn btn-primary"><i class="fa-solid fa-plus mr-2"></i> Save Search</button>
+                </div>
+            </div>
+
+            <!-- Active Filters Chips -->
+            <div class="flex gap-2 mb-6">
+                <div class="badge badge-blue">Seed Stage <i class="fa-solid fa-xmark ml-1 cursor-pointer"></i></div>
+                <div class="badge badge-blue">Tech & SaaS <i class="fa-solid fa-xmark ml-1 cursor-pointer"></i></div>
+                <div class="badge badge-blue">$10k - $250k <i class="fa-solid fa-xmark ml-1 cursor-pointer"></i></div>
+                <a href="#" class="text-xs text-muted underline self-center">Clear all</a>
+            </div>
+
+            <div class="funding-grid">
+
+                <!-- Card 1 -->
+                <div class="funding-card">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <div class="scheme-icon">
+                                <i class="fa-solid fa-lightbulb fa-xl text-white"></i>
+                            </div>
+                            <span class="badge badge-green">High Probability</span>
+                        </div>
+                        <h3 class="text-lg font-bold">Smart Grant 2026</h3>
+                        <p class="text-xs text-muted mb-3">Innovate UK</p>
+
+                        <div class="tag-row">
+                            <div class="tag-chip"><i class="fa-regular fa-calendar mr-1"></i> 12 Days Left</div>
+                            <div class="tag-chip"><i class="fa-solid fa-sterling-sign mr-1"></i> £100k - £500k</div>
+                        </div>
+
+                        <p class="text-sm text-secondary line-clamp-3">Funding for game-changing and commercially viable
+                            R&D innovations involving AI and Machine Learning.</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn btn-outline text-xs flex-1"><i
+                                class="fa-solid fa-wand-magic-sparkles mr-1 text-accent"></i> AI Explain</button>
+                        <button class="btn btn-primary text-xs flex-1">Check Eligibility</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="funding-card">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <div class="scheme-icon">
+                                <i class="fa-solid fa-leaf fa-xl text-white"></i>
+                            </div>
+                            <span class="badge badge-yellow">Med Probability</span>
+                        </div>
+                        <h3 class="text-lg font-bold">Green Tech Fund</h3>
+                        <p class="text-xs text-muted mb-3">Department of Energy</p>
+
+                        <div class="tag-row">
+                            <div class="tag-chip"><i class="fa-regular fa-calendar mr-1"></i> 45 Days Left</div>
+                            <div class="tag-chip"><i class="fa-solid fa-dollar-sign mr-1"></i> $500k - $2M</div>
+                        </div>
+
+                        <p class="text-sm text-secondary line-clamp-3">Supports startups developing clean energy
+                            solutions. Priority given to carbon capture and storage technologies.</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn btn-outline text-xs flex-1"><i
+                                class="fa-solid fa-wand-magic-sparkles mr-1 text-accent"></i> AI Explain</button>
+                        <button class="btn btn-primary text-xs flex-1">Check Eligibility</button>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="funding-card">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <div class="scheme-icon">
+                                <i class="fa-solid fa-rocket fa-xl text-white"></i>
+                            </div>
+                            <span class="badge badge-green">High Probability</span>
+                        </div>
+                        <h3 class="text-lg font-bold">Accelerator Batch W26</h3>
+                        <p class="text-xs text-muted mb-3">Y Combinator</p>
+
+                        <div class="tag-row">
+                            <div class="tag-chip"><i class="fa-regular fa-calendar mr-1"></i> Rolling</div>
+                            <div class="tag-chip"><i class="fa-solid fa-dollar-sign mr-1"></i> $125k (Equity)</div>
+                        </div>
+
+                        <p class="text-sm text-secondary line-clamp-3">The standard deal is $125k for 7% equity. We help
+                            founders make something people want.</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn btn-outline text-xs flex-1"><i
+                                class="fa-solid fa-wand-magic-sparkles mr-1 text-accent"></i> AI Explain</button>
+                        <button class="btn btn-primary text-xs flex-1">Check Eligibility</button>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="funding-card">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <div class="scheme-icon">
+                                <i class="fa-solid fa-store fa-xl text-white"></i>
+                            </div>
+                            <span class="badge badge-yellow">Med Probability</span>
+                        </div>
+                        <h3 class="text-lg font-bold">Small Business Boost</h3>
+                        <p class="text-xs text-muted mb-3">Regional Growth Fund</p>
+
+                        <div class="tag-row">
+                            <div class="tag-chip"><i class="fa-regular fa-calendar mr-1"></i> 3 Months Left</div>
+                            <div class="tag-chip"><i class="fa-solid fa-dollar-sign mr-1"></i> $25k - $50k</div>
+                        </div>
+
+                        <p class="text-sm text-secondary line-clamp-3">Non-dilutive capital for small businesses looking
+                            to upgrade digital infrastructure and ecommerce capabilities.</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn btn-outline text-xs flex-1"><i
+                                class="fa-solid fa-wand-magic-sparkles mr-1 text-accent"></i> AI Explain</button>
+                        <button class="btn btn-primary text-xs flex-1">Check Eligibility</button>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="funding-card">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <div class="scheme-icon">
+                                <i class="fa-solid fa-graduation-cap fa-xl text-white"></i>
+                            </div>
+                            <span class="badge badge-red">Low Probability</span>
+                        </div>
+                        <h3 class="text-lg font-bold">Academic Partnership</h3>
+                        <p class="text-xs text-muted mb-3">University Alliance</p>
+
+                        <div class="tag-row">
+                            <div class="tag-chip"><i class="fa-regular fa-calendar mr-1"></i> 1 Year Left</div>
+                            <div class="tag-chip"><i class="fa-solid fa-handshake mr-1"></i> Matched Funding</div>
+                        </div>
+
+                        <p class="text-sm text-secondary line-clamp-3">Collaborative funding for businesses working
+                            directly with university research labs on deep tech projects.</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn btn-outline text-xs flex-1"><i
+                                class="fa-solid fa-wand-magic-sparkles mr-1 text-accent"></i> AI Explain</button>
+                        <button class="btn btn-primary text-xs flex-1">Check Eligibility</button>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="funding-card">
+                    <div>
+                        <div class="flex justify-between items-start">
+                            <div class="scheme-icon">
+                                <i class="fa-solid fa-flask fa-xl text-white"></i>
+                            </div>
+                            <span class="badge badge-blue">Closing Soon</span>
+                        </div>
+                        <h3 class="text-lg font-bold">Future Leaders</h3>
+                        <p class="text-xs text-muted mb-3">Research Council</p>
+
+                        <div class="tag-row">
+                            <div class="tag-chip"><i class="fa-regular fa-calendar mr-1"></i> 2 Days Left</div>
+                            <div class="tag-chip"><i class="fa-solid fa-dollar-sign mr-1"></i> $1.5M Max</div>
+                        </div>
+
+                        <p class="text-sm text-secondary line-clamp-3">Long-term support for early career researchers
+                            and innovators with outstanding potential.</p>
+                    </div>
+
+                    <div class="action-row">
+                        <button class="btn btn-outline text-xs flex-1"><i
+                                class="fa-solid fa-wand-magic-sparkles mr-1 text-accent"></i> AI Explain</button>
+                        <button class="btn btn-primary text-xs flex-1">Check Eligibility</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Loader -->
+            <div class="flex justify-center mt-8">
+                <button class="btn btn-outline">Load More Schemes <i class="fa-solid fa-chevron-down ml-2"></i></button>
+            </div>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

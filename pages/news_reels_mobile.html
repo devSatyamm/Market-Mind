@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketMind | News Reels (Mobile)</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            overflow: hidden;
+            background: black;
+        }
+
+        .reel-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .reel {
+            height: 100vh;
+            width: 100%;
+            scroll-snap-align: start;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .reel-overlay {
+            position: absolute;
+            bottom: 80px;
+            /* Moved up for nav */
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .impact-badge {
+            background: rgba(255, 0, 60, 0.2);
+            border: 1px solid var(--neon-red);
+            color: var(--neon-red);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .impact-badge.positive {
+            background: rgba(10, 255, 10, 0.2);
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+        }
+
+        .reel-video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .controls {
+            position: absolute;
+            right: 10px;
+            bottom: 150px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 20;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: none;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        .sim-hud {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--neon-blue);
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: var(--neon-blue);
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        /* Nav styles delegated to style.css */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="reel-container">
+        <!-- Reel 1 -->
+        <div class="reel">
+            <div class="reel-video-placeholder" style="background: radial-gradient(circle, #1a1a2e, #000);">[AI
+                SIMULATION:<br>OIL SHOCK]</div>
+            <div class="sim-hud">> CRUDE: +4.2%<br>> LOGISTICS: -1.8%</div>
+            <div class="reel-overlay">
+                <div class="impact-badge">High Risk</div>
+                <h2>Supply Chain Alert</h2>
+                <p>OPEC+ cuts trigger logistics failures.</p>
+            </div>
+            <div class="controls">
+                <button class="control-btn">🔊</button>
+                <button class="control-btn">🌐</button>
+                <button class="control-btn">ℹ️</button>
+            </div>
+        </div>
+        <!-- Reel 2 -->
+        <div class="reel">
+            <div class="reel-video-placeholder" style="background: radial-gradient(circle, #0f2027, #203a43, #2c5364);">
+                [AI SIMULATION:<br>TECH GRANT]</div>
+            <div class="sim-hud" style="color: var(--neon-green); border-color: var(--neon-green);">> FUNDING: $500M
+            </div>
+            <div class="reel-overlay">
+                <div class="impact-badge positive">Opportunity</div>
+                <h2>AI Govt Subsidy</h2>
+                <p>$500M grant for Gen-AI startups.</p>
+            </div>
+            <div class="controls">
+                <button class="control-btn">🔊</button>
+                <button class="control-btn">📝</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav class="glass-panel">
+        <div class="nav-links">
+            <a href="../dashboard_mobile.html">Home</a>
+            <a href="news_reels_mobile.html" class="active">Reels</a>
+            <a href="vc_forge_mobile.html">Forge</a>
+            <a href="scheme_oracle_mobile.html">Oracle</a>
+            <a href="profile_mobile.html">Profile</a>
+        </div>
+    </nav>
+</body>
+
+</html>
